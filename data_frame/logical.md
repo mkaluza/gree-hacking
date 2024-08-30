@@ -93,3 +93,12 @@ The only place they can be seen is the IDU display when you tell it to briefly s
 | 15 | ---
 | 16 | ---
 
+### ODU  0x40 0x1X (64, 16)
+
+| Byte | Description | Comment |
+|------|-------------|---------|
+|  0 | flag 0/1 
+|  1 | Compressor Freq cmd | requested value - 49.16.2 follows soon after
+|  2 | ---
+| 3-5 | unknown 
+| 6-16 | ---
