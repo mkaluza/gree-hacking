@@ -36,13 +36,60 @@ The only place they can be seen is the IDU display when you tell it to briefly s
 |  0 | --- |  |
 |  1 | Mode | IDU working mode | |
 |  2 | Fan speed | IDU fan speed | |
-|  3 | Half degree temp values | 4th bit (8) for evaporator temp, 6th (32) for Fahrenheit selection |
-|  4 | Selected temp. | |
-|  5 | Air Temp | +40 |
+|  3 | Half degree temp bit flags | evaporator temp (4), set temp in Fahrenheit (6) |
+|  4 | Selected temp. | not +40 shifted|
+|  5 | Air Temp | 
 |  6 | --- |
-|  7 | Evaporator temp | +40, half deg is byte 3 bit 4 |
-|  8 | some flag
+|  7 | Evaporator temp | half deg is byte 3 bit 4 |
+|  8 | some flag | 0/1
 |  9 | ---
-| 10 | Quiet(5)/SE(4) flags.
+| 10 | Quiet(5)/SE(7) flags. | SE mode also locks set temp to 27C
 | 11-16 | ---
+
+### IDU 0x32 0x2X (50, 32)
+
+| Byte | Description | Comment |
+|------|-------------|---------|
+|  0 | --- | 
+|  1 | on/off flag (7) | 128/0
+|  2 | --- |
+|  3 | night/sleep mode flag (3)
+| 4-12 | --- |
+| 13 | 16
+| 14-16 | --- |
+
+### ODU  0x31 0x1X (49, 16)
+
+| Byte | Description | Comment |
+|------|-------------|---------|
+|  0 | --- |
+|  1 | overall status
+|  2 | compressor Freq (Hz)
+|  3 | fan speed 
+|  4 | ---
+|  5 | unknown
+|  6 | flag 0/1 | set to one during/around valve close
+|  7 | expansion valve setting
+|  8 | unknown
+|  9 | ---
+| 10 | Inlet air temp
+| 11 | Outlet air temp
+| 12 | Compressor temp
+| 13 | ---
+| 14 | ---
+| 15 | unknown
+| 16 | ---
+
+### ODU  0x32 0x1X (50, 16)
+
+| Byte | Description | Comment |
+|------|-------------|---------|
+|  0-9 | --- |
+| 10 | Heat exchanger temp
+| 11 | ---
+| 12 | ---
+| 13 | Valve/gas temp
+| 14 | Return/liquid temp | or the other way around, not sure
+| 15 | ---
+| 16 | ---
 
